@@ -1,0 +1,9 @@
+.loading, .error{
+  text-align: center;
+  margin: 4rem auto;
+}
+
+.home{
+  max-width: 120rem;
+  margin: 6rem auto;
+}

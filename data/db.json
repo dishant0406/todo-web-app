@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Task Group 1",
+      "list": [
+        "Work",
+        "Go to Market",
+        "Do coding",
+        "call Father"
+      ],
+      "summery": "Do your work then purchase vegetable and do coding then at night call father",
+      "Time": "45 minutes"
+    },
+    {
+      "id": "2",
+      "title": "Task Group 2",
+      "list": [
+        "Work",
+        "Go to Market",
+        "Do coding",
+        "call Father"
+      ],
+      "summery": "Do your work then purchase vegetable and do coding then at night call father",
+      "Time": "30 minutes"
+    },{
+      "id": "3",
+      "title": "Task Group 3",
+      "list": [
+        "Work",
+        "Go to Market",
+        "Do coding",
+        "call Father"
+      ],
+      "summery": "Do your work then purchase vegetable and do coding then at night call father",
+      "Time": "50 minutes"
+    }
+  ]
+}
