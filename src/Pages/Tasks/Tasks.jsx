@@ -2,8 +2,8 @@ import './Tasks.css'
 
 import {useParams} from 'react-router-dom';
 
-import React from 'react'
-import { useFetch } from '../../Hooks/useFetch';
+import React, {useState, useEffect} from 'react'
+
 
 
 //Material UI
@@ -15,6 +15,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 
 import Typography from '@material-ui/core/Typography';
+import { todofirestore } from '../../Fireabase/config';
 
 
 
@@ -36,7 +37,27 @@ const useStyles = makeStyles({
 const Tasks = () => {
   const {id} = useParams();
   
-  const {data, isPending, error} = useFetch(`http://localhost:3000/tasks/${id}`);
+  const [data, setData] = useState(null)
+  const [isPending, setIsPending] = useState(false)
+  const [error, setError] = useState(null)
+
+  useEffect(() => {
+    
+    setIsPending(true);
+
+    todofirestore.collection('tasks').doc(id).get().then(doc=>{
+      if(doc.exists){
+        setIsPending(false);
+        setData(doc.data());
+      }else{
+        setIsPending(false);
+        setError('Could Not Find The Task!');
+      }
+    })
+  
+    
+  }, [id]);
+  
   
   const classes = useStyles();
 
@@ -48,7 +69,7 @@ const Tasks = () => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          image="https://source.unsplash.com/random/350×150/?work"
+          image="https://source.unsplash.com/random/350×150/?motivation"
           title="Contemplative Reptile"
         />
         <CardContent>

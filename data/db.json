@@ -23,7 +23,8 @@
       ],
       "summery": "Do your work then purchase vegetable and do coding then at night call father",
       "Time": "30 minutes"
-    },{
+    },
+    {
       "id": "3",
       "title": "Task Group 3",
       "list": [
@@ -34,6 +35,39 @@
       ],
       "summery": "Do your work then purchase vegetable and do coding then at night call father",
       "Time": "50 minutes"
+    },
+    {
+      "title": "TASK GROUP 4",
+      "list": [
+        "work",
+        "homework",
+        "coding",
+        "gaming"
+      ],
+      "summery": "do your work and homework practice coding and play game",
+      "Time": "30 minutes",
+      "id": "aFHM8Fs"
+    },
+    {
+      "title": "TASK GROUP 6",
+      "list": [
+        "do coding",
+        "practice DSA",
+        "complete the portfolio"
+      ],
+      "summery": "do some coding then practice DSA and complete the portfolio that you are working on.",
+      "Time": "60 minutes",
+      "id": "FumZzvC"
+    },
+    {
+      "title": "TASK GROUP 8",
+      "list": [
+        "coding",
+        "work"
+      ],
+      "summery": "do coding and work",
+      "Time": "30 minutes",
+      "id": "97931Y7"
     }
   ]
 }

@@ -1,12 +1,11 @@
 import './Home.css';
 
-import { useFetch } from '../../Hooks/useFetch';
-
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TaskList from '../../Components/TasksList/TaskList';
 
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { todofirestore } from '../../Fireabase/config';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +18,40 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
 
-  const {data, isPending, error} = useFetch('http://localhost:3000/tasks');
+  const [data, setData] = useState(null);
+  const [isPending, setIsPending] = useState(false);
+  const [error, setError] = useState(null);
+
+ useEffect(() => {
+
+      setIsPending(true);
+
+      const unsub = todofirestore.collection('tasks').onSnapshot((snapshot)=>{
+        if(snapshot.empty){
+
+          setError('No Tasks to Load');
+          setIsPending(false);
+
+        }
+        else{
+          
+          let results = [];
+          snapshot.docs.forEach(doc => {
+            results.push({id: doc.id, ...doc.data()})
+          })
+          setData(results);
+          setIsPending(false);
+        }
+      }, (err)=>{
+        setError(err.message);
+        setIsPending(false);
+      })
+
+
+      return () => unsub();
+   
+ }, [])
+ 
 
   const classes = useStyles();
 
@@ -32,9 +64,11 @@ const Home = () => {
       {isPending && <div className={classes.root}>
                       <CircularProgress />
                     </div>}
-      {data && <TaskList tasks={data}/>}
+      
+      {!error && data && <TaskList tasks={data}/>}
+      
     </div>
   )
 }
 
-export default Home
+export default Home;

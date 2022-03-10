@@ -67,11 +67,22 @@ nav ul li a{
   .checkbtn{
     display: block;
   }
-  ul{
+  ul.dark{
     position: fixed;
     width: 100%;
     height: 100vh;
-    background: #1B9BFF;
+    background: #000;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+    z-index: 100;
+  }
+  ul.light{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #01C8B7;
     top: 80px;
     left: -100%;
     text-align: center;

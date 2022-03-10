@@ -9,8 +9,10 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import { IconButton } from '@material-ui/core';
+import { todofirestore } from '../../Fireabase/config';
 
 
 
@@ -43,11 +45,14 @@ const TaskList = ({tasks}) => {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
+  const handleClick = (id)=> {
+    todofirestore.collection('tasks').doc(id).delete();
+  }
 
 
   return (
     <div>
-       <Grid container spacing={3}  justifyContent="center" style={{ minHeight: "100vh" }}>
+       <Grid container spacing={3} justifyContent="center"  style={{ minHeight: "100vh" }}>
       {tasks.map(task=>{
         return  <Grid item key={task.id}>
         <Card className={classes.root} variant="outlined" style={{boxShadow: '16px 10px 18px -9px rgba(0,0,0,0.1)'}}>
@@ -67,7 +72,11 @@ const TaskList = ({tasks}) => {
       </CardContent>
       <CardActions>
       <Link to={`/tasks/${task.id}`}><Button variant="contained" disableElevation >More..</Button></Link>
+      <IconButton aria-label="delete" onClick={()=> handleClick(task.id)}>
+          <HighlightOffIcon />
+        </IconButton>
       </CardActions>
+      
     </Card>
     </Grid>
       })}
